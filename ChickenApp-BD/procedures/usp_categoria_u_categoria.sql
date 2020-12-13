@@ -1,6 +1,6 @@
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_categoria_u_categoria`(inout id int,in nombre varchar(45),in descripcion varchar(200))
 BEGIN
-	if (SELECT EXISTS(SELECT * FROM categories WHERE idCategories=id AND estateCategories=1)) THEN
+	IF (SELECT EXISTS(SELECT * FROM categories WHERE idCategories=id AND estateCategories=1)) THEN
 		UPDATE categories 
 		SET nameCategories=nombre,descriptionCategories=descripcion 
 		WHERE idCategories=id;
