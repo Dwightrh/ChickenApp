@@ -1,12 +1,13 @@
-CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_categoria_s_categoria`(in id int,in estado int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_categoria_s_categoria`(IN id INT,IN estado INT)
 BEGIN
-	if (id=0) then
-		select * from categories where estateCategories=estado;
+	IF (id=0) THEN
+		SELECT * FROM categories WHERE estateCategories=estado;
 	else
-		if (SELECT EXISTS(select * from categories where idCategories=id and estateCategories=estado)) then
-			select * from categories where idCategories=id and estateCategories=estado;
-		else	
-			select 'No existe esta categoria';
-		end if;
-    end if;
+		IF (SELECT EXISTS(SELECT * FROM categories WHERE idCategories=id 
+		AND estateCategories=estado)) THEN
+			SELECT * FROM categories WHERE idCategories=id AND estateCategories=estado;
+		ELSE	
+			SELECT 'No existe esta categoria';
+		END IF;
+    END IF;
 END
