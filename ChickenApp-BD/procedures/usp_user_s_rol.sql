@@ -14,23 +14,23 @@ BEGIN
       
       --  ////// TIPO ADMIN ///////////////AUN NO DEFINIDO///////////////
       IF ( @tipo = '2' ) THEN
-         SELECT typeUser FROM Users WHERE emailusers=pemail;
+        SELECT typeUser FROM Users WHERE emailusers=pemail;
 	  END IF;     
       
        --  ////// TIPO COCINERO ////////////////////////////////////////
        IF ( @tipo = '3' ) THEN
       
-         SELECT typeUser,idEmployees AS "idChef" , firstnameEmployees AS "firstname" ,
-         lastnameEmployees AS "lastname" , dniEmployees AS "dni" , phoneEmployees AS "phone" ,
-          workshiftEmployees AS "workshift", ageEmployees AS "age", emailEmployees AS "email",passwordUsers AS "password",adressEmployees AS "adress" 
-          FROM Employees INNER JOIN Users ON Employees.emailEmployees = Users.emailUsers 
-          WHERE emailUsers=pemail;
+        SELECT typeUser,idEmployees AS "idChef" , firstnameEmployees AS "firstname" ,
+        lastnameEmployees AS "lastname" , dniEmployees AS "dni" , phoneEmployees AS "phone" ,
+        workshiftEmployees AS "workshift", ageEmployees AS "age", emailEmployees AS "email",passwordUsers AS "password",adressEmployees AS "adress" 
+        FROM Employees INNER JOIN Users ON Employees.emailEmployees = Users.emailUsers 
+        WHERE emailUsers=pemail;
 	  END IF;
       
       --  ////// TIPO DELIVERY ////////////////////////////////////////
       IF ( @tipo = '4' ) THEN
       
-         SELECT typeUser ,idEmployees AS "idDeliveryboy" , firstnameEmployees AS "firstname" ,
+        SELECT typeUser ,idEmployees AS "idDeliveryboy" , firstnameEmployees AS "firstname" ,
         lastnameEmployees AS "lastname" , dniEmployees AS "dni" , phoneEmployees AS "phone" ,
         workshiftEmployees AS "workshift", ageEmployees AS "age", emailEmployees AS "email",passwordUsers AS "password", adressEmployees AS "adress" 
         FROM Employees INNER JOIN Users ON Employees.emailEmployees = Users.emailUsers 
