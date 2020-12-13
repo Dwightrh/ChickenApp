@@ -1,3 +1,0 @@
-# ChickenApp
-
-David Branch
