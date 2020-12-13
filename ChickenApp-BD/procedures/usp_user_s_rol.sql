@@ -1,28 +1,40 @@
 CREATE DEFINER=`admin`@`%` PROCEDURE `usp_user_s_rol`(in pemail varchar(45))
 BEGIN
 
-      set @tipo = (select typeUser from Users where emailusers=pemail);
+      SET @tipo = (SELECT typeUser FROM Users WHERE emailusers=pemail);
       
       --  ////// TIPO CLIENTE ////////////////////////////////////////
       IF ( @tipo = '1' ) THEN
-        select typeUser,idCustomers as "idClient" , firstnameCustomers as "firstname" , lastnameCustomers as "lastname" , phoneCustomers as "phone" , adressCustomers as "adress", emailCustomers as "email",passwordUsers as "password" from Customers inner join Users ON Customers.emailCustomers = Users.emailUsers where emailUsers=pemail;
+        SELECT typeUser,idCustomers AS "idClient" , firstnameCustomers AS "firstname" ,
+        lastnameCustomers AS "lastname" , phoneCustomers AS "phone" , adressCustomers AS "adress",
+        emailCustomers AS "email",passwordUsers AS "password" 
+        FROM Customers INNER JOIN Users ON Customers.emailCustomers = Users.emailUsers 
+        WHERE emailUsers=pemail;
       END IF;
       
       --  ////// TIPO ADMIN ///////////////AUN NO DEFINIDO///////////////
       IF ( @tipo = '2' ) THEN
-         select typeUser from Users where emailusers=pemail;
+         SELECT typeUser FROM Users WHERE emailusers=pemail;
 	  END IF;     
       
        --  ////// TIPO COCINERO ////////////////////////////////////////
        IF ( @tipo = '3' ) THEN
       
-         select typeUser,idEmployees as "idChef" , firstnameEmployees as "firstname" , lastnameEmployees as "lastname" , dniEmployees as "dni" , phoneEmployees as "phone" , workshiftEmployees as "workshift", ageEmployees as "age", emailEmployees as "email",passwordUsers as "password", adressEmployees as "adress" from Employees inner join Users ON Employees.emailEmployees = Users.emailUsers where emailUsers=pemail;
+         SELECT typeUser,idEmployees AS "idChef" , firstnameEmployees AS "firstname" ,
+         lastnameEmployees AS "lastname" , dniEmployees AS "dni" , phoneEmployees AS "phone" ,
+          workshiftEmployees AS "workshift", ageEmployees AS "age", emailEmployees AS "email",passwordUsers AS "password",adressEmployees AS "adress" 
+          FROM Employees INNER JOIN Users ON Employees.emailEmployees = Users.emailUsers 
+          WHERE emailUsers=pemail;
 	  END IF;
       
       --  ////// TIPO DELIVERY ////////////////////////////////////////
       IF ( @tipo = '4' ) THEN
       
-         select typeUser ,idEmployees as "idDeliveryboy" , firstnameEmployees as "firstname" , lastnameEmployees as "lastname" , dniEmployees as "dni" , phoneEmployees as "phone" , workshiftEmployees as "workshift", ageEmployees as "age", emailEmployees as "email",passwordUsers as "password", adressEmployees as "adress" from Employees inner join Users ON Employees.emailEmployees = Users.emailUsers where emailUsers=pemail;
+         SELECT typeUser ,idEmployees AS "idDeliveryboy" , firstnameEmployees AS "firstname" ,
+        lastnameEmployees AS "lastname" , dniEmployees AS "dni" , phoneEmployees AS "phone" ,
+        workshiftEmployees AS "workshift", ageEmployees AS "age", emailEmployees AS "email",passwordUsers AS "password", adressEmployees AS "adress" 
+        FROM Employees INNER JOIN Users ON Employees.emailEmployees = Users.emailUsers 
+        WHERE emailUsers=pemail;
          
 	  END IF;
      
