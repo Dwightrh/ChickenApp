@@ -1,16 +1,18 @@
 CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_categoria_d_categoria`(inout id int)
 BEGIN
-	if (SELECT EXISTS(select * from categories where idCategories=id and estateCategories=1)) then
-		update categories set estateCategories=0 where idCategories=id;
-        if (SELECT EXISTS(select * from categories where idCategories=id and estateCategories=0)) then
-			select 'Se realizo la operacion';
-            select idCategories into id from categories where idCategories=id and estateCategories=0;
-        else
-			select 'No se realizo la operacion';
-            set id=-1;
-        end if;
-	else 
-		select 'No existe esta categoria';
-        set id=-2;
-	end if;
+	IF (SELECT EXISTS(SELECT * FROM categories WHERE idCategories=id AND estateCategories=1)) THEN
+		UPDATE categories 
+		SET estateCategories=0 
+		WHERE idCategories=id;
+        IF (SELECT EXISTS(SELECT * FROM categories WHERE idCategories=id AND estateCategories=0)) THEN
+			SELECT 'Se realizo la operacion';
+            SELECT idCategories INTO id FROM categories WHERE idCategories=id AND estateCategories=0;
+        ELSE
+			SELECT 'No se realizo la operacion';
+            SET id=-1;
+        END IF;
+	ELSE 
+		SELECT 'No existe esta categoria';
+        SET id=-2;
+	END IF;
 END
